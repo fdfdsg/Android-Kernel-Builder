@@ -28,7 +28,7 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone  https://github.com/fdfdsg/android_kernel_lge_sm8150 -b stock android-kernel --depth=1
+        git clone  https://github.com/fdfdsg/android_kernel_lge_sm8150 -b main android-kernel --depth=1
 
     - name: Setup KernelSU
       run: |
