@@ -1,4 +1,4 @@
-name: Build Kernel For GTmaster
+name: Build Kernel For GTmasterexplorer
 on:
   workflow_dispatch:
 
