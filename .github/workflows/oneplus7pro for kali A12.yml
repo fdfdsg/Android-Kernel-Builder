@@ -28,18 +28,9 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone  https://github.com/fdfdsg/nethunter_kernel_oneplus7pro -b nethunter-12.1 android-kernel --depth=1
+        git clone  https://github.com/cyberknight777/nethunter_kernel_oneplus_sm8150 -b nethunter-12.1 android-kernel --depth=1
 
-    - name: Setup KernelSU
-      run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
-
-    - name: Setup Configuration for Kernel
-      run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        echo "CONFIG_HAVE_KPROBES=y" >> arch/arm64/configs/vendor/sm8150-perf_defconfig
-        echo "CONFIG_KPROBE_EVENTS=y" >> arch/arm64/configs/vendor/sm8150-perf_defconfig
+    -
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
@@ -50,7 +41,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang/bin:$PATH
-        make -j$(nproc --all) CROSS_COMPILE=aarch64-linux-gnu- CC=clang O=out ARCH=arm64 vendor/sm8150-perf_defconfig
+        make -j$(nproc --all) CROSS_COMPILE=aarch64-linux-gnu- CC=clang O=out ARCH=arm64 /kali_defconfig
         make -j$(nproc --all) CROSS_COMPILE=aarch64-linux-gnu- CC="ccache clang" O=out ARCH=arm64
 
     - name: Make Anykernel3
