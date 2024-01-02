@@ -30,7 +30,7 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace
         git clone  https://github.com/cyberknight777/nethunter_kernel_oneplus_sm8150 -b nethunter-12.1 android-kernel --depth=1
 
-    -
+
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
